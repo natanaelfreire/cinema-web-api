@@ -1,4 +1,6 @@
 using CinemaWebApi.Db;
+using CinemaWebApi.Services.Implementations;
+using CinemaWebApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<Context>(options => options.UseMySQL(builder.Configuration.GetConnectionString("MysqlDatabase")));
+
+builder.Services.AddScoped<IFilmeService, FilmeService>();
 
 var app = builder.Build();
 

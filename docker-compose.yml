@@ -14,8 +14,8 @@ services:
     volumes:
       - ./store/:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=12345
       - MYSQL_DATABASE=cinemadb
-      - MYSQL_USER=root
+      - MYSQL_USER=natan
       - MYSQL_PASSWORD=12345
 
