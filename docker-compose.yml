@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  cinemawebapi:
+    image: ${DOCKER_REGISTRY-}cinemawebapi
+    build:
+      context: .
+      dockerfile: CinemaWebApi/Dockerfile
+  mysqldb:
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./store/:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=cinemadb
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=12345
+
