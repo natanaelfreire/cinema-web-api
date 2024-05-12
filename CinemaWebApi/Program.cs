@@ -15,6 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<Context>(options => options.UseMySQL(builder.Configuration.GetConnectionString("MysqlDatabase")));
 
 builder.Services.AddScoped<IFilmeService, FilmeService>();
+builder.Services.AddScoped<ISalaService, SalaService>();
 
 var app = builder.Build();
 
