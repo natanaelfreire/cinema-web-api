@@ -15,9 +15,18 @@ namespace CinemaWebApi.Services.Implementations
             _context = context;
         }
 
-        public async Task Create(FilmeDTO filmeDTO)
+        public async Task<bool> Create(FilmeDTO filmeDTO)
         {
             var filme = new Filme();
+
+            if (string.IsNullOrWhiteSpace(filmeDTO.Nome))
+                throw new Exception("Nome do filme não pode ser vazio");
+
+            if (string.IsNullOrWhiteSpace(filmeDTO.Diretor))
+                throw new Exception("Nome do diretor não pode ser vazio");
+
+            if (filme.DuracaoMinutos <= 0)
+                throw new Exception("Duração do filme deve ser maior que zero");
 
             filme.Nome = filmeDTO.Nome;
             filme.Diretor = filmeDTO.Diretor;
@@ -25,6 +34,8 @@ namespace CinemaWebApi.Services.Implementations
 
             _context.Filmes.Add(filme);
             await _context.SaveChangesAsync();
+
+            return true;
         }
 
         public async Task Delete(int id)
